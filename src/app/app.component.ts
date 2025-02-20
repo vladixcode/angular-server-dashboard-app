@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'app-root',
@@ -35,7 +35,7 @@ export class AppComponent {
       id: 'd47',
       value: 589,
     },
-  ];
-  maxTraffic = Math.max(...this.dummyTrafficData.map((data) => data.value));
-  currentStatus = 'online';
+  ]
+  maxTraffic = Math.max(...this.dummyTrafficData.map((data) => data.value))
+  currentStatus = 'online'
 }
