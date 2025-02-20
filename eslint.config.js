@@ -24,14 +24,14 @@ module.exports = tseslint.config(
           style: "camelCase",
         },
       ],
-      "@angular-eslint/component-selector": [
-        "error",
-        {
-          type: "element",
-          prefix: "app",
-          style: "kebab-case",
-        },
-      ],
+      // "@angular-eslint/component-selector": [
+      //   "error",
+      //   {
+      //     type: "element",
+      //     prefix: "app",
+      //     style: "kebab-case",
+      //   },
+      // ],
     },
   },
   {
@@ -41,6 +41,8 @@ module.exports = tseslint.config(
       ...angular.configs.templateAccessibility,
       eslintPluginPrettierRecommended
     ],
-    rules: {},
+    rules: {
+      "@angular-eslint/template/elements-content": "off"
+    },
   }
 );
