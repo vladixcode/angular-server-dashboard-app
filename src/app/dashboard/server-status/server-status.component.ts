@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, effect, OnInit, signal } from '@angular/core'
 
 export enum ServerStatusEnum {
   Online = 'online',
@@ -12,20 +12,31 @@ export enum ServerStatusEnum {
   templateUrl: './server-status.component.html',
   styleUrl: './server-status.component.css',
 })
-export class ServerStatusComponent {
-  currentStatus: `${ServerStatusEnum}` = 'online'
+export class ServerStatusComponent implements OnInit {
+  // currentStatus: `${ServerStatusEnum}` = ServerStatusEnum.Online
+
+  currentStatus = signal<`${ServerStatusEnum}`>(ServerStatusEnum.Online)
 
   constructor() {
+    effect(() => {
+      console.log('Signal change:', this.currentStatus())
+    })
+  }
+
+  ngOnInit() {
     setInterval(() => {
       const rnd = Math.random() // 0 - 0.99999999 (1 excluded)
 
       if (rnd < 0.5) {
         // 50% of all cases
-        this.currentStatus = 'online'
+        // this.currentStatus = ServerStatusEnum.Online
+        this.currentStatus.set(ServerStatusEnum.Online)
       } else if (rnd < 0.9) {
-        this.currentStatus = 'offline'
+        // this.currentStatus = ServerStatusEnum.Offline
+        this.currentStatus.set(ServerStatusEnum.Offline)
       } else {
-        this.currentStatus = 'unknown'
+        // this.currentStatus = ServerStatusEnum.Unknown
+        this.currentStatus.set(ServerStatusEnum.Unknown)
       }
     }, 5000)
   }

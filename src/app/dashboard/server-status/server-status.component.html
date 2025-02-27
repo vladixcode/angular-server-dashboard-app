@@ -1,15 +1,15 @@
 <div
   [class]="{
     status: true,
-    'status-online': currentStatus === ServerStatusEnum.Online,
-    'status-offline': currentStatus === ServerStatusEnum.Offline,
-    'status-unknown': currentStatus === ServerStatusEnum.Unknown,
+    'status-online': currentStatus() === ServerStatusEnum.Online,
+    'status-offline': currentStatus() === ServerStatusEnum.Offline,
+    'status-unknown': currentStatus() === ServerStatusEnum.Unknown,
   }"
 >
-  @if (currentStatus === ServerStatusEnum.Online) {
+  @if (currentStatus() === ServerStatusEnum.Online) {
     <p>Servers are online</p>
     <p>All systems are operational.</p>
-  } @else if (currentStatus === ServerStatusEnum.Offline) {
+  } @else if (currentStatus() === ServerStatusEnum.Offline) {
     <p>Servers are offline</p>
     <p>Functionality should be restored soon.</p>
   } @else {
