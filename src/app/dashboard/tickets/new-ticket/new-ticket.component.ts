@@ -31,6 +31,9 @@ export class NewTicketComponent implements OnInit, AfterViewInit {
   // @Output() add = new EventEmitter()
   add = output<{ title: string; text: string }>()
 
+  enteredTitle = ''
+  enteredText = ''
+
   ngOnInit(): void {
     console.log('On Init')
     // When using viewChild() method you will have access to this.formElement()
@@ -43,16 +46,19 @@ export class NewTicketComponent implements OnInit, AfterViewInit {
     console.log(this.formElement().nativeElement)
   }
 
-  onSubmit(title: string, ticketText: string) {
-    console.log('submitted', title, ticketText)
-
+  onSubmit() {
     // this.formElement?.nativeElement.reset()
 
     this.add.emit({
-      title,
-      text: ticketText,
+      title: this.enteredTitle,
+      text: this.enteredText,
     })
 
-    this.formElement().nativeElement.reset()
+    // Reseting form with tempalte variables appraoch of extracting data from the from
+    // this.formElement().nativeElement.reset()
+
+    // Reseting form with Two-way binding appraoch
+    this.enteredTitle = ''
+    this.enteredText = ''
   }
 }
